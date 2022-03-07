@@ -1,0 +1,450 @@
+// text
+$text_black: #222;
+$text_red: #d84851;
+
+@mixin flex(
+  $justify: flex-start,
+  $align: stretch,
+  $direction: row,
+  $wrap: nowrap
+) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+@mixin possition($position: relative, $top, $left, $x, $y) {
+  position: $position;
+  top: $top;
+  left: $left;
+  transform: translate($x, $y);
+}
+
+a {
+  display: inline-block;
+  color: $text_black;
+  text-decoration: none;
+}
+
+p {
+  font-size: 1.4rem;
+}
+
+.btn {
+  &_address_contact_follow {
+    border: 0.1rem solid lightgrey;
+    background: transparent;
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    font-size: 1.4rem;
+    i {
+      font-size: 1rem;
+      display: inline-block;
+      text-align: center;
+    }
+  }
+  &_address_search {
+    width: 4rem;
+    border: 0.1rem solid lightgrey;
+    position: relative;
+    display: block;
+    i {
+      font-size: 1.2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.header {
+  padding-top: 2.5rem;
+  &__container {
+    @include flex(space-between, center);
+    &__logo {
+      font-size: 2rem;
+      font-weight: 400;
+    }
+    &__nav {
+      &__list {
+        @include flex(flex-start, center);
+        list-style: none;
+      }
+      &__item {
+        margin: 0 2.75rem;
+        &-item {
+          font-size: 1.4rem;
+          transition: color linear 0.3s;
+          &:hover {
+            color: $text_red;
+            transition: color linear 0.3s;
+          }
+        }
+      }
+    }
+    &__user {
+      @include flex(flex-start, center);
+
+      &__content {
+        @include flex(flex-start, center);
+
+        transition: border linear 0.3s;
+        border-radius: 3rem;
+        border: 0.1rem solid transparent;
+        padding: 0.5rem;
+        cursor: pointer;
+        &__name {
+          font-size: 1.6rem;
+          color: $text_red;
+          padding: 0 1rem;
+        }
+
+        &__photo {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+
+        &:hover {
+          border: 0.1rem solid $text_red;
+          transition: border linear 0.3s;
+        }
+      }
+    }
+    .btn {
+      margin-right: 1.6rem;
+      i {
+        font-size: 1.5rem;
+        color: rgb(253, 190, 71);
+      }
+    }
+  }
+}
+
+.address_contact_follow {
+  padding-top: 10rem;
+  padding-bottom: 3rem;
+  &_content {
+    @include flex(flex-start, center);
+    &-address {
+      margin-right: 1rem;
+      &--form {
+        @include flex(stretch);
+        width: 40rem;
+        border-radius: 0.4rem;
+        overflow: hidden;
+        input[type="text"] {
+          flex: 1;
+          padding: 1rem;
+          font-size: 1.4rem;
+          outline: none;
+        }
+        input[type="submit"] {
+          padding: 1rem;
+          background-color: $text_red;
+          color: #fff;
+          border: 1px solid $text_red;
+          font-size: 1.4rem;
+        }
+      }
+    }
+    &-contact {
+      margin-right: 1rem;
+      @include flex(flex-start, center);
+      p {
+        margin-right: 1rem;
+      }
+      button {
+        margin-right: 1rem;
+        i {
+          color: $text_red;
+        }
+      }
+    }
+
+    &-follow {
+      @include flex(flex-start, center);
+      p {
+        margin-right: 1rem;
+      }
+      button {
+        margin-right: 1rem;
+        i {
+          color: lightgrey;
+        }
+      }
+    }
+  }
+}
+
+.order {
+  margin-bottom: 6rem;
+  &_content {
+    @include flex(stretch, center);
+
+    &-item {
+      @include flex(stretch, center);
+      margin: 0 1.5rem;
+      border: 0.1rem solid transparent;
+      border-radius: 3rem;
+      padding-right: 1rem;
+      color: $text_red;
+      cursor: pointer;
+      transition: all 0.3s linear;
+      &:hover {
+        border: 0.1rem solid currentColor;
+        transition: all 0.3s linear;
+      }
+    }
+    &-photo {
+      margin-right: 1rem;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      @include possition(relative, 0, 0, 0, 0);
+      background: #eb949a;
+      i {
+        @include possition(absolute, 50%, 50%, -50%, -50%);
+        font-size: 1.4rem;
+        color: #d84851;
+      }
+    }
+    &-description {
+      span {
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+.hotel-lastDeal {
+  &_content {
+    @include flex(space-between, stretch);
+
+    // share
+    .hotel_content_list,
+    .deal_content_list {
+      overflow: auto;
+      width: 100%;
+      height: 60rem;
+      &::-webkit-scrollbar {
+        width: 1rem;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: rgb(248, 146, 252);
+        border-radius: 2rem;
+        overflow: hidden;
+      }
+      &::-webkit-scrollbar-track {
+        background: rgb(247, 197, 197);
+        border-radius: 2rem;
+        overflow: hidden;
+      }
+    }
+
+    .hotel_content_item,
+    .deal_content_item {
+      cursor: pointer;
+      transition: transform 0.3s linear;
+      &:hover {
+        transform: scale(1.02);
+        transition: transform 0.3s linear;
+      }
+    }
+
+    .hotel_content_list {
+      flex: 1;
+      @include flex(flex-start, stretch, row, wrap);
+      margin-right: 1.25rem;
+      padding: 3rem;
+      background-color: rgb(233, 233, 233);
+    }
+    .hotel_content_item {
+      width: calc(25% - 2rem);
+      height: 35rem;
+      margin: 1rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      background-color: #fff;
+      padding: 0.5rem;
+    }
+    .hotel_content_photo {
+      height: 22.5rem;
+      width: 100%;
+      border-radius: 1rem;
+      overflow: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    .hotel_content_decription {
+      padding: 1.5rem;
+    }
+
+    .hotel_content_title {
+      font-size: 1.7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hotel_content_subtitle {
+      margin-bottom: 1.5rem;
+    }
+
+    .hotel_content_price {
+      span {
+        font-weight: 700;
+      }
+    }
+
+    // deal list
+
+    .deal_content_list {
+      flex: 0.3;
+      margin-left: 1.25rem;
+      background: rgb(233, 233, 233);
+      padding: 2.5rem;
+    }
+
+    .deal_content_top {
+      @include flex(space-between, center);
+      margin-bottom: 3rem;
+    }
+
+    .deal_content_top_title {
+      font-size: 1.8rem;
+      color: #222;
+    }
+
+    .deal_content_top_link {
+      color: $text_red;
+      font-size: 1.5rem;
+    }
+    .deal_content_item {
+      @include flex(flex-start, flex-start);
+      padding: 0.5rem;
+      background-color: rgb(204, 204, 204);
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .deal_content_photo {
+      width: 13rem;
+      height: 15rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-right: 2rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+    .deal_content_title {
+      font-size: 1.6rem;
+      margin: 1.5rem 0;
+    }
+    .deal_content_subtitle {
+      margin-bottom: 1.5rem;
+    }
+
+    .deal_content_price span {
+      font-weight: 600;
+    }
+  }
+}
+
+@media (max-width: 76.8rem) {
+  .address_contact_follow {
+    padding-top: 4rem;
+  }
+  .order_content {
+    @include flex(flex-start, stretch, row, wrap);
+  }
+  .order_content-item {
+    margin-bottom: 1rem;
+  }
+  .hotel-lastDeal_content .deal_content_list {
+    display: none;
+  }
+  .hotel-lastDeal_content .hotel_content_list {
+    height: 82rem;
+  }
+  .hotel-lastDeal_content .hotel_content_item {
+    width: calc(33.3% - 2rem);
+  }
+}
+
+@media (max-width: 42.5rem) {
+  .header__container__nav {
+    display: none;
+  }
+
+  .address_contact_follow_content {
+    @include flex(flex-start, center, column, nowrap);
+  }
+
+  .btn_address_search {
+    margin-left: 1rem;
+  }
+  .address_contact_follow_content-address {
+    margin-bottom: 1rem;
+    margin-left: 1rem;
+  }
+  .address_contact_follow_content-address--form input[type="submit"] {
+    margin-right: 1rem;
+  }
+  .address_contact_follow_content-contact {
+    margin-bottom: 1rem;
+  }
+  .hotel-lastDeal_content .hotel_content_item {
+    width: 100%;
+  }
+}
+
+@media (max-width: 32rem) {
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  .address_contact_follow_content-address--form {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn_address_search {
+    display: none;
+  }
+
+  .address_contact_follow_content-address--form input[type="text"] {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .address_contact_follow_content-address--form input[type="submit"] {
+    margin-right: 0;
+  }
+
+  .hotel-lastDeal_content .hotel_content_list {
+    margin-right: 0;
+  }
+
+  .hotel-lastDeal_content .hotel_content_list {
+    padding: 0;
+  }
+}
